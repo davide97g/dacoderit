@@ -1,4 +1,7 @@
+"use client";
 import { ArrowRight, Code, Mail, Map, Users, Youtube } from "lucide-react";
+import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -86,15 +89,37 @@ export default function Home() {
     },
   ];
 
+  // get theme
+  const { theme, systemTheme } = useTheme();
+
+  const backgroundImage =
+    (theme === "system" ? systemTheme : theme) === "dark"
+      ? "/background-dark.png"
+      : "/background.png";
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-3.5rem)]">
-      <div className="container max-w-4xl px-4 py-8">
+      <div
+        style={{
+          backgroundImage: "url('" + backgroundImage + "')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className="container w-full px-4 py-8 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg"
+      >
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold tracking-tight mb-4">
-            Frontend & Web Developer
+            Dacoder Project
           </h1>
+          <Image
+            src={"/profile-pic.png"}
+            alt="Logo"
+            width={100}
+            height={100}
+            className="mx-auto mb-4 rounded-full border-2 border-primary shadow-lg"
+          />
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Building beautiful, responsive, and accessible web experiences
+            Open source. Collaborative. Community-driven.
           </p>
         </div>
 

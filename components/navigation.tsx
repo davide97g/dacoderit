@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
@@ -26,10 +27,19 @@ export default function Navigation() {
   }, [pathname]);
 
   return (
-    <header className="px-1 sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="px-2 sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
         <Link href="/" className="font-bold text-xl">
-          Dacoder
+          <div className="flex items-center gap-2">
+            <Image
+              src={"/profile-pic.png"}
+              alt="Logo"
+              width={40}
+              height={40}
+              className="mx-auto rounded-full"
+            />
+            Dacoder
+          </div>
         </Link>
         <nav className="flex items-center gap-6">
           <ul className="hidden md:flex gap-6">

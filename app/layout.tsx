@@ -38,7 +38,7 @@ export default function RootLayout({
         >
           <div className="min-h-dvh flex flex-col items-center justify-center">
             <Navigation />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 w-full">{children}</main>
           </div>
         </ThemeProvider>
       </body>
