@@ -7,44 +7,50 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ExternalLink, Github, TriangleAlert } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  type: "Open Source" | "Collaborative";
+  github: string;
+  demo?: string;
+};
+
 export default function ProjectsPage() {
-  const projects = [
+  // TODO: fetch this data from github API
+  const projects: Project[] = [
     {
-      title: "React Component Library",
+      title: "Reputation Ranking System",
       description:
         "A collection of reusable React components with TypeScript support",
-      tags: ["React", "TypeScript", "CSS"],
+      tags: ["JavaScript", "Github API", "Github Actions"],
       type: "Open Source",
-      github: "https://github.com/username/react-components",
-      demo: "https://react-components-demo.vercel.app",
+      github: "https://github.com/davide97g/reputation-ranking-system",
     },
     {
-      title: "Next.js Blog Template",
-      description: "A customizable blog template built with Next.js and MDX",
-      tags: ["Next.js", "MDX", "Tailwind CSS"],
-      type: "Open Source",
-      github: "https://github.com/username/nextjs-blog",
-      demo: "https://nextjs-blog-template.vercel.app",
-    },
-    {
-      title: "E-commerce Dashboard",
-      description:
-        "A collaborative project for an e-commerce dashboard with analytics",
-      tags: ["React", "Chart.js", "Firebase"],
+      title: "Pokèdle",
+      description: "Wordle-inspired game based on pokemon to guess",
+      tags: ["Typescript", "React", "Node.js", "Stripe API", "Monorepo"],
       type: "Collaborative",
-      github: "https://github.com/team/ecommerce-dashboard",
-      demo: "https://ecommerce-dashboard.vercel.app",
+      github: "https://github.com/davide97g/pokedle",
+      demo: "https://pokedle.online",
     },
     {
-      title: "Weather App",
-      description: "A weather application with location-based forecasts",
-      tags: ["JavaScript", "Weather API", "Geolocation"],
-      type: "Open Source",
-      github: "https://github.com/username/weather-app",
-      demo: "https://weather-app-demo.vercel.app",
+      title: "Chattonapp",
+      description: "Run locally your custom chat service with a Raspberry Pi",
+      tags: [
+        "Typescript",
+        "React",
+        "Node.js",
+        "Websocket",
+        "Monorepo",
+        "Raspberry Pi",
+      ],
+      type: "Collaborative",
+      github: "https://github.com/davide97g/chattonapp",
     },
   ];
 
@@ -56,13 +62,6 @@ export default function ProjectsPage() {
           A showcase of open source and collaborative projects
         </p>
       </div>
-
-      {/* work in progress page */}
-      <p className="text-sm text-background flex items-center bg-amber-300 rounded-md p-4 mb-6 gap-2">
-        <TriangleAlert className="inline-block h-4 w-4" />
-        This page is a work in progress. I am working hard to improve the
-        community section. Stay tuned for updates!
-      </p>
 
       <div className="grid gap-6 mt-6">
         {projects.map((project, index) => (
@@ -103,15 +102,17 @@ export default function ProjectsPage() {
                 <Github className="h-4 w-4 mr-2" />
                 GitHub
               </Link>
-              <Link
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-              >
-                <ExternalLink className="h-4 w-4 mr-2" />
-                Live Demo
-              </Link>
+              {project.demo && (
+                <Link
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Live Demo
+                </Link>
+              )}
             </CardFooter>
           </Card>
         ))}
