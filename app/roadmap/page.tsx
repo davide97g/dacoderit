@@ -6,50 +6,44 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CheckCircle2, Circle, Clock, TriangleAlert } from "lucide-react";
+import { CheckCircle2, Circle, Clock } from "lucide-react";
+
+type RoadmapItem = {
+  title: string;
+  description: string;
+  status: "completed" | "in-progress" | "planned";
+  timeline: string;
+};
 
 export default function RoadmapPage() {
-  const roadmapItems = [
+  const roadmapItems: RoadmapItem[] = [
     {
-      title: "Learn Advanced React Patterns",
+      title: "Open Youtube Channel",
       description:
-        "Master advanced React patterns like compound components and render props",
+        "I started my Youtube channel to share my journey and start collaborating with you.",
       status: "completed",
-      timeline: "Q1 2023",
+      timeline: "04/2025",
     },
     {
-      title: "Build a Component Library",
+      title: "Feedback & Rewards System",
       description:
-        "Create and publish a reusable component library with documentation",
+        "A system to reward the most active members of the community. Publishing a video, sharing the code and testing it together.",
       status: "in-progress",
-      timeline: "Q2 2023",
+      timeline: "04/2025",
     },
     {
-      title: "Master Next.js App Router",
-      description: "Deep dive into Next.js App Router and server components",
-      status: "in-progress",
-      timeline: "Q3 2023",
-    },
-    {
-      title: "Contribute to Major Open Source Project",
+      title: "Community Projects",
       description:
-        "Become a regular contributor to a major open source project",
+        "A collection of projects to work on together. I will publish a video for each project.",
       status: "planned",
-      timeline: "Q4 2023",
+      timeline: "05/2025",
     },
     {
-      title: "Learn WebAssembly",
+      title: "Open Source Projects",
       description:
-        "Explore WebAssembly and its applications in web development",
+        "A collection of open source projects that I will publish on Github.",
       status: "planned",
-      timeline: "Q1 2024",
-    },
-    {
-      title: "Build AI-powered Developer Tools",
-      description:
-        "Create tools that leverage AI to improve developer workflow",
-      status: "planned",
-      timeline: "Q2 2024",
+      timeline: "05/2025",
     },
   ];
 
@@ -91,16 +85,10 @@ export default function RoadmapPage() {
       <div className="mb-12">
         <h1 className="text-4xl font-bold tracking-tight mb-4">Roadmap</h1>
         <p className="text-xl text-muted-foreground">
-          My learning journey and future plans in web development
+          My personal roadmap for the next months. Here you can find both my
+          Youtube and Community Projects goals.
         </p>
       </div>
-
-      {/* work in progress page */}
-      <p className="text-sm text-background flex items-center bg-amber-300 rounded-md p-4 mb-6 gap-2">
-        <TriangleAlert className="inline-block h-4 w-4" />
-        This page is a work in progress. I am working hard to improve the
-        community section. Stay tuned for updates!
-      </p>
 
       <div className="relative pl-8 border-l-2 border-muted">
         {roadmapItems.map((item, index) => (
