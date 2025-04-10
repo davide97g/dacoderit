@@ -61,6 +61,19 @@ export default function ProjectsPage() {
         <p className="text-xl text-muted-foreground">
           A showcase of open source and collaborative projects
         </p>
+        {/* link to notion for all the status updates */}
+        <p className="text-sm text-muted-foreground mt-2">
+          Check out my{" "}
+          <Link
+            href="https://twisty-bougon-ada.notion.site/1cf064acf45d8026bb16dd3147f99d07?v=1cf064acf45d80f19439000c7adf15f7&pvs=74"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            Notion Projects page
+          </Link>{" "}
+          for all the status updates
+        </p>
       </div>
 
       <div className="grid gap-6 mt-6">
