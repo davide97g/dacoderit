@@ -1,3 +1,4 @@
+import { JoinDiscord } from "@/components/join-discord";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -75,6 +76,8 @@ export default function CommunityPage() {
         This page is a work in progress. I am working hard to improve the
         community section. Stay tuned for updates!
       </p>
+
+      <JoinDiscord />
 
       <div className="mb-12 mt-6">
         <div className="flex items-center gap-2 mb-6">

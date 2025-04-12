@@ -12,11 +12,14 @@ import { Github, Linkedin, Mail } from "lucide-react";
 export default function ContactPage() {
   const socialLinks = [
     { icon: Github, label: "GitHub", href: "https://github.com/davide97g" },
-    // { icon: Twitter, label: "Twitter", href: "https://twitter.com/username" },
     {
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/davide-ghiotto/",
+    },
+    {
+      label: "Discord",
+      href: "https://discord.gg/uZ848MKE",
     },
     { icon: Mail, label: "Email", href: "mailto:dacoderit@gmail.com" },
   ];
@@ -48,7 +51,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="flex items-center p-3 rounded-lg border hover:bg-accent transition-colors"
               >
-                <link.icon className="h-5 w-5 mr-3" />
+                {link.icon && <link.icon className="h-5 w-5 mr-3" />}
                 <span>{link.label}</span>
               </a>
             ))}

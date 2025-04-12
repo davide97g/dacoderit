@@ -1,4 +1,5 @@
 "use client";
+import { JoinDiscord } from "@/components/join-discord";
 import { ArrowRight, Code, Mail, Map, Users, Youtube } from "lucide-react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
@@ -121,6 +122,9 @@ export default function Home() {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Open source. Collaborative. Community-driven.
           </p>
+          <div className="mt-6 mb-4 mx-auto flex items-center justify-center gap-4">
+            <JoinDiscord />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
