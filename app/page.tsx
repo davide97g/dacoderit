@@ -35,13 +35,14 @@ function LinkCard({
   description: string;
   icon: React.ComponentType<{ className?: string }>;
 }) {
+  const { theme } = useTheme();
   return (
     <Link
       href={href}
-      className="group block p-6 border rounded-lg hover:bg-accent transition-colors"
+      className="group block p-6 border rounded-lg hover:bg-accent transition-colors bg-accent/50"
     >
       <div className="flex items-start gap-4">
-        <div className="mt-1 p-2 rounded-md bg-primary/10 text-primary">
+        <div className="mt-1 p-2 rounded-md bg-primary/20 text-primary">
           <Icon className="h-5 w-5" />
         </div>
         <div>
@@ -49,7 +50,13 @@ function LinkCard({
             {label}
             <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
           </h2>
-          <p className="text-muted-foreground">{description}</p>
+          <p
+            className={
+              theme == "dark" ? "text-muted-foreground" : "text-foreground/50"
+            }
+          >
+            {description}
+          </p>
         </div>
       </div>
     </Link>
@@ -119,7 +126,7 @@ export default function Home() {
             height={100}
             className="mx-auto mb-4 rounded-full border-2 border-primary shadow-lg"
           />
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
             Open source. Collaborative. Community-driven.
           </p>
           <div className="mt-6 mb-4 mx-auto flex items-center justify-center gap-4">
