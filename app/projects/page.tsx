@@ -17,11 +17,21 @@ type Project = {
   type: "Open Source" | "Collaborative";
   github: string;
   demo?: string;
+  new?: boolean;
 };
 
 export default function ProjectsPage() {
   // TODO: fetch this data from github API
   const projects: Project[] = [
+    {
+      title: "Youtube Thumbnail Preview",
+      description: "Preview youtube thumbnail with a custom image",
+      tags: ["JavaScript", "Vanilla", "HTML", "CSS"],
+      type: "Open Source",
+      github: "https://github.com/davide97g/mocknail",
+      new: true,
+      demo: "https://davide97g.github.io/mocknail/",
+    },
     {
       title: "Reputation Ranking System",
       description:
@@ -78,11 +88,27 @@ export default function ProjectsPage() {
 
       <div className="grid gap-6 mt-6">
         {projects.map((project, index) => (
-          <Card key={index}>
+          <Card
+            key={index}
+            className={[
+              "w-full bg-card shadow-md hover:shadow-lg transition-shadow duration-300",
+              project.new ? "border-1 border-blue-400 bg-blue-50" : "",
+            ].join(" ")}
+          >
             <CardHeader>
               <div className="flex justify-between items-start">
                 <div>
-                  <CardTitle>{project.title}</CardTitle>
+                  <CardTitle>
+                    {project.title}
+                    {project.new && (
+                      <Badge className="ml-2" variant="default">
+                        New
+                        <span role="img" aria-label="sparkles">
+                          ✨
+                        </span>
+                      </Badge>
+                    )}
+                  </CardTitle>
                   <CardDescription className="mt-1">
                     {project.description}
                   </CardDescription>
