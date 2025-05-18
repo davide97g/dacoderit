@@ -18,35 +18,39 @@ type Project = {
   github: string;
   demo?: string;
   new?: boolean;
+  otherLinks?: { label: string; link: string }[];
 };
 
 export default function ProjectsPage() {
   // TODO: fetch this data from github API
   const projects: Project[] = [
     {
-      title: "Youtube Thumbnail Preview",
-      description: "Preview youtube thumbnail with a custom image",
-      tags: ["JavaScript", "Vanilla", "HTML", "CSS"],
-      type: "Open Source",
-      github: "https://github.com/davide97g/mocknail",
-      new: true,
-      demo: "https://davide97g.github.io/mocknail/",
-    },
-    {
-      title: "Reputation Ranking System",
-      description:
-        "A collection of reusable React components with TypeScript support",
-      tags: ["JavaScript", "Github API", "Github Actions"],
-      type: "Open Source",
-      github: "https://github.com/davide97g/reputation-ranking-system",
-    },
-    {
       title: "Pokèdle",
+      new: true,
       description: "Wordle-inspired game based on pokemon to guess",
       tags: ["Typescript", "React", "Node.js", "Stripe API", "Monorepo"],
       type: "Collaborative",
       github: "https://github.com/davide97g/pokedle",
       demo: "https://pokedle.online",
+      otherLinks: [
+        {
+          label: "Product Hunt",
+          link: "https://www.producthunt.com/products/pokedle-2",
+        },
+        {
+          label: "Medium",
+          link: "https://medium.com/@dacoderit/pok%C3%A9dle-find-an-optimal-solution-for-a-pokemon-guessing-game-384b09a819f7",
+        },
+      ],
+    },
+    {
+      title: "Impact Hub - Reputation Ranking System",
+      description:
+        "A system to rank the reputation of users based on their contributions",
+      tags: ["JavaScript", "Github API", "Github Actions"],
+      type: "Open Source",
+      github: "https://github.com/davide97g/reputation-ranking-system",
+      demo: "https://impact.dacoder.it",
     },
     {
       title: "Chattonapp",
@@ -129,6 +133,29 @@ export default function ProjectsPage() {
                     {tag}
                   </Badge>
                 ))}
+              </div>
+              <div className="mt-4">
+                {project.otherLinks && (
+                  <>
+                    <p className="text-sm text-muted-foreground">
+                      Other links:
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {project.otherLinks.map((link, linkIndex) => (
+                        <Badge key={linkIndex} variant="outline">
+                          <Link
+                            href={link.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm hover:underline"
+                          >
+                            {link.label}
+                          </Link>
+                        </Badge>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             </CardContent>
             <CardFooter className="flex justify-end gap-2">
