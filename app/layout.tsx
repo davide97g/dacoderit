@@ -44,6 +44,10 @@ export const metadata: Metadata = {
   keywords: [
     "Dacoder",
     "Davide Ghiotto",
+    "Pulse HR",
+    "pulsehr.it",
+    "open source HR",
+    "people-first HR",
     "open source",
     "open-source projects",
     "developer community",
@@ -54,6 +58,7 @@ export const metadata: Metadata = {
     "TypeScript",
     "React",
     "Next.js",
+    "Bun",
     "YouTube developer channel",
   ],
   category: "technology",

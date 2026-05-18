@@ -51,6 +51,20 @@ const items: RoadmapItem[] = [
     status: "planned",
     timeline: "May 2025",
   },
+  {
+    title: "Pulse HR · MVP release",
+    description:
+      "Open-source HR platform for the people half of HR: status log, growth, kudos, wellbeing, workload check-ins. App live at app.pulsehr.it, source on GitHub under FSL-1.1-MIT.",
+    status: "completed",
+    timeline: "May 2026",
+  },
+  {
+    title: "Pulse HR · collect first feedback",
+    description:
+      "Open the feedback board to real users. Wire up voting power, watch the first cohort use Status Log and Kudos, ship the obvious fixes weekly.",
+    status: "in-progress",
+    timeline: "Week of May 25, 2026",
+  },
 ];
 
 function StatusGlyph({ status }: { status: Status }) {

@@ -5,13 +5,13 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Open-source and collaborative projects by Davide Ghiotto: Pokèdle, Impact Hub (reputation ranking system), Chattonapp, and more. Source, live demos, and notes.",
+    "Open-source and collaborative projects by Davide Ghiotto. Featured: Pulse HR, an open-source people-first HR platform. Also Pokèdle, Impact Hub (reputation ranking), Chattonapp.",
   alternates: { canonical: "/projects" },
   openGraph: {
     url: "/projects",
     title: "Projects · Dacoder",
     description:
-      "Open-source and collaborative projects by Davide Ghiotto. Source, live demos, and notes.",
+      "Featured: Pulse HR — software for people, not headcount. Plus Pokèdle, Impact Hub, and Chattonapp.",
   },
 };
 
@@ -29,8 +29,34 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Pokèdle",
+    title: "Pulse HR",
     isNew: true,
+    year: "2026",
+    description:
+      "Software for people, not headcount. An open-source HR platform around the people half of HR: async status log, growth, kudos, wellbeing, workload check-ins. MVP released, feedback opens next week. Source-available under FSL-1.1-MIT.",
+    tags: [
+      "TypeScript",
+      "React 19",
+      "Bun",
+      "TanStack Router",
+      "Hono",
+      "Drizzle",
+      "Neon Postgres",
+      "Astro",
+      "PWA",
+    ],
+    type: "Open Source",
+    github: "https://github.com/davide97g/pulse-hr",
+    demo: "https://app.pulsehr.it",
+    otherLinks: [
+      { label: "pulsehr.it", link: "https://pulsehr.it" },
+      { label: "Roadmap", link: "https://pulsehr.it/roadmap" },
+      { label: "Changelog", link: "https://pulsehr.it/changelog" },
+      { label: "Feedback board", link: "https://feedback.pulsehr.it" },
+    ],
+  },
+  {
+    title: "Pokèdle",
     year: "2025",
     description:
       "A Wordle-inspired guessing game for Pokémon. Built for the curious afternoon.",

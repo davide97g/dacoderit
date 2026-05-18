@@ -5,15 +5,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Dacoder · a small workshop for open-source software",
+  title:
+    "Dacoder · a small workshop for open-source software",
   description:
-    "Davide Ghiotto's notebook of open-source projects, YouTube episodes, and community work. Building software in public, one collaboration at a time.",
+    "Davide Ghiotto's notebook of open-source projects, YouTube episodes, and community work. Currently shipping Pulse HR, an open-source people-first HR platform.",
   alternates: { canonical: "/" },
   openGraph: {
     url: "/",
     title: "Dacoder · a small workshop for open-source software",
     description:
-      "Open source, collaborative, community-driven. Projects, videos, and a Discord room for builders.",
+      "Open source, collaborative, community-driven. Pulse HR MVP just released. Projects, videos, and a Discord room for builders.",
   },
 };
 
@@ -54,7 +55,7 @@ export default function Home() {
   return (
     <div className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 md:pt-24">
       {/* Header. Asymmetric: type left, photo right. */}
-      <section className="grid grid-cols-[1fr_auto] gap-8 items-start mb-20">
+      <section className="grid grid-cols-[1fr_auto] gap-8 items-start mb-16">
         <div className="reveal" style={{ ["--d" as string]: "60ms" }}>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-6">
             <span className="inline-block w-2 h-2 rounded-full bg-accent mr-2 align-middle pulse-dot" />
@@ -68,7 +69,7 @@ export default function Home() {
         </div>
         <Image
           src="/profile-pic.png"
-          alt="Davide"
+          alt="Davide Ghiotto, creator of Dacoder"
           width={88}
           height={88}
           priority
@@ -77,10 +78,96 @@ export default function Home() {
         />
       </section>
 
+      {/* Featured project banner — Pulse HR */}
+      <section
+        aria-labelledby="featured-pulse-hr"
+        className="relative my-16 border-y border-rule py-10 reveal"
+        style={{ ["--d" as string]: "220ms" }}
+      >
+        <div className="flex items-baseline justify-between gap-4 mb-6 flex-wrap">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent flex items-center gap-2">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent pulse-dot" />
+            Now shipping · MVP released
+          </p>
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            Featured project · May 2026
+          </span>
+        </div>
+
+        <h2
+          id="featured-pulse-hr"
+          className="font-display text-5xl md:text-6xl tracking-tight leading-[0.98] mb-3"
+        >
+          <span className="display-italic">Pulse HR</span> — software for
+          people, not headcount.
+        </h2>
+
+        <p className="text-[17px] leading-relaxed text-foreground/85 max-w-[62ch] text-pretty mb-4">
+          An open-source HR platform built around the people half of HR:
+          async status log, growth, kudos, wellbeing, workload check-ins.
+          Deliberately leaves payroll, timesheets and recruiting to other
+          tools. Source-available today under FSL-1.1-MIT, converts to MIT
+          after two years.
+        </p>
+
+        <ul className="font-mono text-[11px] text-muted-foreground flex flex-wrap gap-x-4 gap-y-1.5 mb-7">
+          <li>Status Log</li>
+          <li>·</li>
+          <li>Growth</li>
+          <li>·</li>
+          <li>Kudos</li>
+          <li>·</li>
+          <li>Moments</li>
+          <li>·</li>
+          <li>Workload check-in</li>
+          <li>·</li>
+          <li>People Insights</li>
+        </ul>
+
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
+          <a
+            href="https://app.pulsehr.it"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-grow inline-flex items-baseline gap-1 font-display text-xl tracking-tight text-foreground"
+          >
+            Open the app
+            <ArrowUpRight className="h-4 w-4 self-center" aria-hidden />
+          </a>
+          <a
+            href="https://pulsehr.it"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-grow inline-flex items-baseline gap-0.5 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            pulsehr.it
+            <ArrowUpRight className="h-3.5 w-3.5 self-center" aria-hidden />
+          </a>
+          <a
+            href="https://github.com/davide97g/pulse-hr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-grow inline-flex items-baseline gap-0.5 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Source on GitHub
+            <ArrowUpRight className="h-3.5 w-3.5 self-center" aria-hidden />
+          </a>
+          <a
+            href="https://feedback.pulsehr.it"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-grow inline-flex items-baseline gap-0.5 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Feedback board
+            <ArrowUpRight className="h-3.5 w-3.5 self-center" aria-hidden />
+          </a>
+        </div>
+      </section>
+
       {/* Manifesto */}
       <section
         className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-x-6 gap-y-3 mb-20 reveal"
-        style={{ ["--d" as string]: "260ms" }}
+        style={{ ["--d" as string]: "320ms" }}
       >
         <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground pt-2">
           ¶ Intent
@@ -113,7 +200,7 @@ export default function Home() {
             <li
               key={e.href}
               className="reveal border-b border-rule last:border-b-0"
-              style={{ ["--d" as string]: `${360 + i * 70}ms` }}
+              style={{ ["--d" as string]: `${420 + i * 70}ms` }}
             >
               <Link
                 href={e.href}
