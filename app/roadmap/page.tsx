@@ -1,3 +1,18 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Roadmap",
+  description:
+    "What is next for Dacoder, in the open. Channel goals, community projects, and open-source releases. Dated when known, honest when not.",
+  alternates: { canonical: "/roadmap" },
+  openGraph: {
+    url: "/roadmap",
+    title: "Roadmap · Dacoder",
+    description:
+      "Channel goals, community projects, and open-source releases. Updated in public.",
+  },
+};
+
 type Status = "completed" | "in-progress" | "planned";
 
 type RoadmapItem = {

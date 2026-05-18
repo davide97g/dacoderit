@@ -1,14 +1,27 @@
-"use client";
+import { CopyEmailButton } from "@/components/copy-email-button";
+import { ArrowUpRight } from "lucide-react";
+import type { Metadata } from "next";
 
-import { ArrowUpRight, Check, Copy } from "lucide-react";
-import { useState } from "react";
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Reach Davide Ghiotto for collaborations, project ideas, or honest critique. Email, GitHub, LinkedIn, and Discord links for Dacoder.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    url: "/contact",
+    title: "Contact · Dacoder",
+    description:
+      "Email, GitHub, LinkedIn, and Discord links for Davide Ghiotto.",
+  },
+};
+
+const EMAIL = "dacoderit@gmail.com";
 
 const channels = [
   {
     label: "Email",
-    handle: "dacoderit@gmail.com",
-    href: "mailto:dacoderit@gmail.com",
-    copy: "dacoderit@gmail.com",
+    handle: EMAIL,
+    href: `mailto:${EMAIL}`,
   },
   {
     label: "GitHub",
@@ -28,18 +41,6 @@ const channels = [
 ];
 
 export default function ContactPage() {
-  const [copied, setCopied] = useState(false);
-
-  async function copyEmail() {
-    try {
-      await navigator.clipboard.writeText("dacoderit@gmail.com");
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1600);
-    } catch {
-      // clipboard blocked — fall through, the mailto: still works
-    }
-  }
-
   return (
     <div className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24">
       <header className="mb-16 reveal" style={{ ["--d" as string]: "40ms" }}>
@@ -83,23 +84,7 @@ export default function ContactPage() {
         ))}
       </ul>
 
-      <button
-        onClick={copyEmail}
-        className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
-        aria-label="Copy email address"
-      >
-        {copied ? (
-          <>
-            <Check className="h-3.5 w-3.5 text-accent" aria-hidden />
-            <span className="text-foreground">Copied to clipboard</span>
-          </>
-        ) : (
-          <>
-            <Copy className="h-3.5 w-3.5" aria-hidden />
-            <span>Copy email instead</span>
-          </>
-        )}
-      </button>
+      <CopyEmailButton email={EMAIL} />
     </div>
   );
 }

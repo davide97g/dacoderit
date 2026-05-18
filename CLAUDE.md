@@ -36,6 +36,14 @@ No test framework is configured.
 - Compose utility classes with `cn()` from `@/lib/utils` (clsx + tailwind-merge) rather than string concatenation, especially when conditionally toggling Tailwind variants.
 - Static assets live in `public/` and are referenced with absolute paths (e.g. `/profile-pic.png`).
 
+## SEO
+
+- **Per-page metadata**: every route exports its own `Metadata` (title, description, `alternates.canonical`, `openGraph.url + title + description`). Title template in `app/layout.tsx` is `"%s · Dacoder"` — set page titles as the short prefix (e.g. `title: "Projects"`) and the template fills in the suffix. The home page sets a `title.default` instead.
+- **Root metadata** (`app/layout.tsx`): `metadataBase` is `https://dacoder.it`, plus full `openGraph`, `twitter` (summary_large_image, `@dacoderit`), `robots` (with `googleBot.max-image-preview: "large"`), `authors`, `keywords`, `category`, `icons`, `formatDetection`.
+- **Structured data**: `Person` + `WebSite` JSON-LD emitted by the `StructuredData` component at the bottom of `<body>`. Hardcoded constants only; the helper escapes `<` to `\\u003c` to neutralise any `</script>` injection risk by construction.
+- **`app/robots.ts`** and **`app/sitemap.ts`** generate `/robots.txt` and `/sitemap.xml` at build time. Add a new route to `app/sitemap.ts` whenever you add a new route under `app/`.
+- **Server vs client + metadata**: client components (`"use client"`) cannot export `metadata`. The contact page demonstrates the pattern — keep page-level data + structure in the server component and isolate browser-only logic in a client child (`components/copy-email-button.tsx`).
+
 ## Design language (do not deviate without intent)
 
 Editorial Workshop direction. Apply consistently across pages:

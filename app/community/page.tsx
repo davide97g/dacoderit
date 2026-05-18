@@ -1,4 +1,18 @@
 import { JoinDiscord } from "@/components/join-discord";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Community",
+  description:
+    "A room of builders, not an audience. Contributions, reputation, and a small rewards system for the people who show up. Join the Dacoder Discord.",
+  alternates: { canonical: "/community" },
+  openGraph: {
+    url: "/community",
+    title: "Community · Dacoder",
+    description:
+      "A room of builders, not an audience. Join the Dacoder Discord and contribute in the open.",
+  },
+};
 
 const principles = [
   {

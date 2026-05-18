@@ -1,7 +1,21 @@
 import { JoinDiscord } from "@/components/join-discord";
 import { ArrowUpRight } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Dacoder · a small workshop for open-source software",
+  description:
+    "Davide Ghiotto's notebook of open-source projects, YouTube episodes, and community work. Building software in public, one collaboration at a time.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    url: "/",
+    title: "Dacoder · a small workshop for open-source software",
+    description:
+      "Open source, collaborative, community-driven. Projects, videos, and a Discord room for builders.",
+  },
+};
 
 const entries = [
   {

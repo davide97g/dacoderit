@@ -1,5 +1,19 @@
 import { ArrowUpRight, Github } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Open-source and collaborative projects by Davide Ghiotto: Pokèdle, Impact Hub (reputation ranking system), Chattonapp, and more. Source, live demos, and notes.",
+  alternates: { canonical: "/projects" },
+  openGraph: {
+    url: "/projects",
+    title: "Projects · Dacoder",
+    description:
+      "Open-source and collaborative projects by Davide Ghiotto. Source, live demos, and notes.",
+  },
+};
 
 type Project = {
   title: string;

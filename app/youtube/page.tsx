@@ -1,4 +1,18 @@
 import { ArrowUpRight } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "YouTube channel",
+  description:
+    "The Dacoder YouTube channel: practical web-development sessions, shipping in public, and code you can clone by Sunday evening. Subscribe at @dacoderit.",
+  alternates: { canonical: "/youtube" },
+  openGraph: {
+    url: "/youtube",
+    title: "YouTube channel · Dacoder",
+    description:
+      "Practical web-development sessions, shipping in public. Subscribe at @dacoderit.",
+  },
+};
 
 type Video = {
   title: string;
