@@ -1,19 +1,23 @@
-import { LogInIcon } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-export function JoinDiscord() {
+export function JoinDiscord({ className = "" }: { className?: string }) {
   return (
-    <p className="text-sm text-background flex items-center bg-purple-400 rounded-md p-4 mb-6 gap-2">
-      Join our Discord community to connect with other developers and contribute
-      to open source projects!
+    <p className={`text-base text-pretty leading-relaxed ${className}`}>
+      <span className="text-muted-foreground">A small Discord exists for </span>
+      <span className="display-italic text-foreground">
+        builders, learners, lurkers
+      </span>
+      <span className="text-muted-foreground">. </span>
       <a
         href="https://discord.gg/uZ848MKE"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-secondary underline ml-2"
+        className="link-grow inline-flex items-baseline gap-0.5 text-foreground"
       >
-        <LogInIcon className="inline-block h-4 w-4 mr-1" />
-        Join Discord
+        Join the room
+        <ArrowUpRight className="h-3.5 w-3.5 self-center" aria-hidden />
       </a>
+      <span className="text-muted-foreground">.</span>
     </p>
   );
 }

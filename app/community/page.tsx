@@ -1,145 +1,117 @@
 import { JoinDiscord } from "@/components/join-discord";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Award, TriangleAlert, Users } from "lucide-react";
 
-type Contribution = {
-  project: string;
-  description: string;
-  role: string;
-  impact: string;
-};
-type Reward = {
-  title: string;
-  description: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-};
+const principles = [
+  {
+    h: "Show up",
+    p: "Reputation is built by being there. A merged PR, a useful question, a recorded bug.",
+  },
+  {
+    h: "Credit travels",
+    p: "Contributions are public, attributable, and counted. The more you give, the more visible you become.",
+  },
+  {
+    h: "Rewards, not points",
+    p: "Tangible thanks for the people who carry weight. Early access, calls, swag, paid bounties when possible.",
+  },
+];
 
 export default function CommunityPage() {
-  const contributions: Contribution[] = [
-    // {
-    //   project: "React",
-    //   description: "Contributed to the React documentation and fixed bugs in the core library",
-    //   role: "Contributor",
-    //   impact: "Improved developer experience for thousands of React developers",
-    // },
-    // {
-    //   project: "Next.js",
-    //   description: "Added new features to the Next.js framework and improved performance",
-    //   role: "Maintainer",
-    //   impact: "Helped improve build times by 15% for large applications",
-    // },
-    // {
-    //   project: "Open Source Design",
-    //   description: "Provided design feedback and UI improvements for various open source projects",
-    //   role: "Designer",
-    //   impact: "Improved accessibility and user experience for multiple projects",
-    // },
-  ];
-
-  const rewards: Reward[] = [
-    // {
-    //   title: "GitHub Star",
-    //   description: "Recognized as a GitHub Star for contributions to open source",
-    //   icon: Star,
-    // },
-    // {
-    //   title: "Community Hero",
-    //   description: "Awarded for mentoring new developers in the community",
-    //   icon: Heart,
-    // },
-    // {
-    //   title: "Top Contributor",
-    //   description: "Recognized as a top contributor to the React ecosystem",
-    //   icon: Trophy,
-    // },
-  ];
-
   return (
-    <div className="container max-w-4xl px-4 py-12">
-      <div className="mb-6">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Community</h1>
-        <p className="text-xl text-muted-foreground">
-          Contributing to the developer community and building reputation
+    <div className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24">
+      <header className="mb-12 reveal" style={{ ["--d" as string]: "40ms" }}>
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+          03 · Community
         </p>
-      </div>
+        <h1 className="font-display text-5xl md:text-6xl tracking-tight leading-[1.02] text-balance mb-6">
+          A room of <span className="display-italic">builders</span>, not an
+          audience.
+        </h1>
+        <p className="text-[17px] leading-relaxed text-muted-foreground max-w-[58ch]">
+          Dacoder is small on purpose. Open source means real names, real
+          changes, real conversations. The community piece is the point, not
+          the funnel.
+        </p>
+      </header>
 
-      {/* work in progress page */}
-      <p className="text-sm text-background flex items-center bg-amber-300 rounded-md p-4 mb-6 gap-2">
-        <TriangleAlert className="inline-block h-4 w-4" />
-        This page is a work in progress. I am working hard to improve the
-        community section. Stay tuned for updates!
+      <section
+        className="mb-16 reveal"
+        style={{ ["--d" as string]: "160ms" }}
+      >
+        <JoinDiscord />
+      </section>
+
+      <section className="mb-20">
+        <header className="flex items-baseline justify-between border-b border-rule pb-3 mb-8">
+          <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            Principles
+          </h2>
+          <span className="font-mono text-[10px] text-muted-foreground/70">
+            in draft
+          </span>
+        </header>
+        <ol>
+          {principles.map((p, i) => (
+            <li
+              key={p.h}
+              className="grid grid-cols-[40px_1fr] gap-x-6 py-7 border-b border-rule last:border-b-0 reveal"
+              style={{ ["--d" as string]: `${260 + i * 80}ms` }}
+            >
+              <span className="font-mono text-[11px] text-muted-foreground/80 pt-2">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-display text-2xl md:text-3xl tracking-tight mb-2">
+                  {p.h}
+                </h3>
+                <p className="text-[16px] leading-relaxed text-foreground/80 max-w-[58ch] text-pretty">
+                  {p.p}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <article className="border-t border-rule pt-6">
+          <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-3">
+            Contributions
+          </h3>
+          <p className="text-[15px] leading-relaxed text-foreground/75 max-w-[40ch] text-pretty">
+            A live ledger of contributions lands here once the rewards system
+            ships. For now, the action is on{" "}
+            <a
+              href="https://github.com/davide97g"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-grow text-foreground"
+            >
+              GitHub
+            </a>
+            .
+          </p>
+        </article>
+        <article className="border-t border-rule pt-6">
+          <h3 className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-3">
+            Rewards
+          </h3>
+          <p className="text-[15px] leading-relaxed text-foreground/75 max-w-[40ch] text-pretty">
+            The shape of the rewards system is being figured out in the open.
+            Follow{" "}
+            <a
+              href="/roadmap"
+              className="link-grow text-foreground"
+            >
+              the roadmap
+            </a>{" "}
+            for status.
+          </p>
+        </article>
+      </section>
+
+      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+        Page in draft · revisions visible in commits
       </p>
-
-      <JoinDiscord />
-
-      <div className="mb-12 mt-6">
-        <div className="flex items-center gap-2 mb-6">
-          <Users className="h-6 w-6" />
-          <h2 className="text-2xl font-semibold">Contributions</h2>
-        </div>
-        {contributions.length === 0 && (
-          <p className="text-muted-foreground">
-            No contributions yet. Start contributing to open source projects and
-            make a difference!
-          </p>
-        )}
-        <div className="grid gap-6">
-          {contributions.map((contribution, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle>{contribution.project}</CardTitle>
-                  <Badge>{contribution.role}</Badge>
-                </div>
-                <CardDescription>{contribution.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  {contribution.impact}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <div className="flex items-center gap-2 mb-6">
-          <Award className="h-6 w-6" />
-          <h2 className="text-2xl font-semibold">Rewards & Recognition</h2>
-        </div>
-        {rewards.length === 0 && (
-          <p className="text-muted-foreground">
-            No rewards yet. Keep contributing to earn recognition!
-          </p>
-        )}
-        <div className="grid gap-6 md:grid-cols-3">
-          {rewards.map((reward, index) => (
-            <Card key={index}>
-              <CardHeader className="pb-2">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 rounded-full bg-primary/10 text-primary">
-                    <reward.icon className="h-6 w-6" />
-                  </div>
-                </div>
-                <CardTitle className="text-center">{reward.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-center text-muted-foreground">
-                  {reward.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

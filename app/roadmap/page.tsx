@@ -1,116 +1,123 @@
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { CheckCircle2, Circle, Clock } from "lucide-react";
+type Status = "completed" | "in-progress" | "planned";
 
 type RoadmapItem = {
   title: string;
   description: string;
-  status: "completed" | "in-progress" | "planned";
+  status: Status;
   timeline: string;
 };
 
-export default function RoadmapPage() {
-  const roadmapItems: RoadmapItem[] = [
-    {
-      title: "Open Youtube Channel",
-      description:
-        "I started my Youtube channel to share my journey and start collaborating with you.",
-      status: "completed",
-      timeline: "04/2025",
-    },
-    {
-      title: "Feedback & Rewards System",
-      description:
-        "A system to reward the most active members of the community. Publishing a video, sharing the code and testing it together.",
-      status: "in-progress",
-      timeline: "04/2025",
-    },
-    {
-      title: "Community Projects",
-      description:
-        "A collection of projects to work on together. I will publish a video for each project.",
-      status: "planned",
-      timeline: "05/2025",
-    },
-    {
-      title: "Open Source Projects",
-      description:
-        "A collection of open source projects that I will publish on Github.",
-      status: "planned",
-      timeline: "05/2025",
-    },
-  ];
+const items: RoadmapItem[] = [
+  {
+    title: "Open the YouTube channel",
+    description:
+      "Started the channel to share the journey and invite collaborators in.",
+    status: "completed",
+    timeline: "Apr 2025",
+  },
+  {
+    title: "Feedback & rewards system",
+    description:
+      "A small system to recognise the people who show up. Building it in the open with a video and the code.",
+    status: "in-progress",
+    timeline: "Apr 2025",
+  },
+  {
+    title: "Community projects",
+    description:
+      "A handful of projects to build together. One video per project, end-to-end.",
+    status: "planned",
+    timeline: "May 2025",
+  },
+  {
+    title: "Open source releases",
+    description:
+      "Carve standalone libraries out of the workshop. Publish on GitHub, tag, document, ship.",
+    status: "planned",
+    timeline: "May 2025",
+  },
+];
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "completed":
-        return <CheckCircle2 className="h-5 w-5 text-green-500" />;
-      case "in-progress":
-        return <Clock className="h-5 w-5 text-amber-500" />;
-      case "planned":
-        return <Circle className="h-5 w-5 text-muted-foreground" />;
-      default:
-        return null;
-    }
-  };
-
-  const getStatusBadge = (status: string) => {
-    switch (status) {
-      case "completed":
-        return <Badge className="bg-green-500">Completed</Badge>;
-      case "in-progress":
-        return (
-          <Badge
-            variant="secondary"
-            className="bg-amber-500/10 text-amber-500 hover:bg-amber-500/20"
-          >
-            In Progress
-          </Badge>
-        );
-      case "planned":
-        return <Badge variant="outline">Planned</Badge>;
-      default:
-        return null;
-    }
-  };
-
+function StatusGlyph({ status }: { status: Status }) {
+  if (status === "completed")
+    return (
+      <span className="relative block h-3 w-3 rounded-full bg-foreground" aria-hidden>
+        <span className="sr-only">completed</span>
+      </span>
+    );
+  if (status === "in-progress")
+    return (
+      <span className="relative block h-3 w-3 rounded-full border border-accent" aria-hidden>
+        <span className="absolute inset-0.5 rounded-full bg-accent pulse-dot" />
+        <span className="sr-only">in progress</span>
+      </span>
+    );
   return (
-    <div className="container max-w-4xl px-4 py-12">
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Roadmap</h1>
-        <p className="text-xl text-muted-foreground">
-          My personal roadmap for the next months. Here you can find both my
-          Youtube and Community Projects goals.
-        </p>
-      </div>
+    <span
+      className="block h-3 w-3 rounded-full border border-rule bg-background"
+      aria-hidden
+    >
+      <span className="sr-only">planned</span>
+    </span>
+  );
+}
 
-      <div className="relative pl-8 border-l-2 border-muted">
-        {roadmapItems.map((item, index) => (
-          <div key={index} className="mb-12 relative">
-            <div className="absolute -left-[25px] bg-background p-1">
-              {getStatusIcon(item.status)}
+const statusLabel: Record<Status, string> = {
+  completed: "Shipped",
+  "in-progress": "In motion",
+  planned: "Planned",
+};
+
+export default function RoadmapPage() {
+  return (
+    <div className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24">
+      <header className="mb-16 reveal" style={{ ["--d" as string]: "40ms" }}>
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+          04 · Roadmap
+        </p>
+        <h1 className="font-display text-5xl md:text-6xl tracking-tight leading-[1.02] text-balance mb-6">
+          The next few months, in the open.
+        </h1>
+        <p className="text-[17px] leading-relaxed text-muted-foreground max-w-[58ch]">
+          Channel and community goals, side by side. Dated when I know, honest
+          when I don&apos;t.
+        </p>
+      </header>
+
+      <ol className="relative pl-8">
+        {/* Vertical rule. 1px structural axis. */}
+        <span
+          className="absolute top-2 bottom-2 left-[5px] w-px bg-rule"
+          aria-hidden
+        />
+        {items.map((item, i) => (
+          <li
+            key={item.title}
+            className="relative pb-12 last:pb-0 reveal"
+            style={{ ["--d" as string]: `${120 + i * 90}ms` }}
+          >
+            <span className="absolute -left-[27px] top-[6px] flex items-center justify-center bg-background pr-2">
+              <StatusGlyph status={item.status} />
+            </span>
+
+            <div className="flex items-baseline justify-between gap-4 mb-2 flex-wrap">
+              <h2 className="font-display text-2xl md:text-3xl tracking-tight">
+                {item.title}
+              </h2>
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                {item.timeline} · {statusLabel[item.status]}
+              </span>
             </div>
-            <Card>
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle>{item.title}</CardTitle>
-                  {getStatusBadge(item.status)}
-                </div>
-                <CardDescription>{item.timeline}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>{item.description}</p>
-              </CardContent>
-            </Card>
-          </div>
+            <p className="text-[16px] leading-relaxed text-foreground/80 max-w-[60ch] text-pretty">
+              {item.description}
+            </p>
+          </li>
         ))}
-      </div>
+      </ol>
+
+      <p className="mt-16 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+        Drafts and revisions kept in public.
+      </p>
     </div>
   );
 }

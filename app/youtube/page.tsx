@@ -1,114 +1,141 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ExternalLink, Youtube } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-type IVideo = {
+type Video = {
   title: string;
   description: string;
-  views: string;
   date: string;
+  url?: string;
 };
 
-export default async function YoutubePage() {
-  const videos: IVideo[] = [];
+const goals = [
+  {
+    h: "Learn by teaching",
+    p: "Frontend and web technology, explained like a practitioner who is still figuring it out. Not lectures, sessions.",
+  },
+  {
+    h: "Inspire shipping",
+    p: "Less talking, more publishing. Every video is a project you could clone and run by Sunday evening.",
+  },
+  {
+    h: "Connect the room",
+    p: "Comments and Discord pull viewers into the workshop. Some of you end up on the projects page.",
+  },
+];
+
+const videos: Video[] = [];
+
+export default function YoutubePage() {
   return (
-    <div className="container max-w-4xl px-4 py-12">
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">
-          Dacoder: YouTube Channel
-        </h1>
-        <Button variant="default" className="gap-2 mb-4" asChild>
-          <a href="https://www.youtube.com/@dacoderit" target="_blank">
-            <Youtube className="h-5 w-5" />
-            Visit YouTube Channel
-          </a>
-        </Button>
-
-        <p className="text-xl text-muted-foreground">
-          Sharing knowledge and experiences through video tutorials and coding
-          sessions
+    <div className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24">
+      <header className="mb-16 reveal" style={{ ["--d" as string]: "40ms" }}>
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+          01 · YouTube channel
         </p>
-      </div>
+        <h1 className="font-display text-5xl md:text-6xl tracking-tight leading-[1.02] text-balance mb-6">
+          A channel for the{" "}
+          <span className="display-italic">enthusiast</span>, not the expert.
+        </h1>
+        <p className="text-[17px] leading-relaxed text-muted-foreground max-w-[58ch] mb-8">
+          Practical sessions about building things on the web. Shipping in
+          public, sharing the code, sometimes getting it wrong on camera.
+        </p>
+        <a
+          href="https://www.youtube.com/@dacoderit"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-baseline gap-1.5 font-display text-2xl tracking-tight link-grow text-foreground"
+        >
+          @dacoderit on YouTube
+          <ArrowUpRight className="h-4 w-4 self-center" aria-hidden />
+        </a>
+      </header>
 
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Channel Goals</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          <Card>
-            <CardHeader>
-              <CardTitle>Learn by Teaching</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>
-                Share practical knowledge about frontend development and web
-                technologies. Not as an expert but as an enthusiast
-              </p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Inspire</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>Motivate developers to start projects on their own</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Connect</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>
-                Build a community of like-minded developers to share ideas and
-                collaborate
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold mb-4">Recent Videos</h2>
-        {videos.length === 0 && (
-          <p className="text-muted-foreground">
-            No videos available at the moment. Please check back later!
-          </p>
-        )}
-        <div className="grid gap-6">
-          {videos.map((video, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle>{video.title}</CardTitle>
-                <CardDescription>{video.description}</CardDescription>
-              </CardHeader>
-              <CardFooter className="flex justify-between">
-                <div className="text-sm text-muted-foreground">
-                  {video.views} views • {video.date}
-                </div>
-                <Button variant="outline" size="sm">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Watch
-                </Button>
-              </CardFooter>
-            </Card>
+      <section className="mb-20">
+        <header className="flex items-baseline justify-between border-b border-rule pb-3 mb-2">
+          <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            Channel intent
+          </h2>
+          <span className="font-mono text-[10px] text-muted-foreground/70">
+            three notes
+          </span>
+        </header>
+        <ol>
+          {goals.map((g, i) => (
+            <li
+              key={g.h}
+              className="grid grid-cols-[40px_1fr] gap-x-6 py-7 border-b border-rule last:border-b-0 reveal"
+              style={{ ["--d" as string]: `${180 + i * 80}ms` }}
+            >
+              <span className="font-mono text-[11px] text-muted-foreground/80 pt-2">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-display text-2xl md:text-3xl tracking-tight mb-2">
+                  {g.h}
+                </h3>
+                <p className="text-[16px] leading-relaxed text-foreground/80 max-w-[58ch] text-pretty">
+                  {g.p}
+                </p>
+              </div>
+            </li>
           ))}
-        </div>
-      </div>
+        </ol>
+      </section>
 
-      <div className="flex justify-center">
-        <Button variant="outline" className="gap-2 mb-4" asChild>
-          <a href="https://www.youtube.com/@dacoderit" target="_blank">
-            <Youtube className="h-5 w-5" />
-            Visit YouTube Channel
-          </a>
-        </Button>
-      </div>
+      <section className="mb-12">
+        <header className="flex items-baseline justify-between border-b border-rule pb-3 mb-6">
+          <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            Recent episodes
+          </h2>
+          <span className="font-mono text-[10px] text-muted-foreground/70">
+            {videos.length} archived
+          </span>
+        </header>
+
+        {videos.length === 0 ? (
+          <div className="py-10 max-w-[52ch]">
+            <p className="font-display text-2xl tracking-tight leading-snug mb-3">
+              The archive opens with episode one.
+            </p>
+            <p className="text-[15px] leading-relaxed text-muted-foreground text-pretty">
+              Filming has not started yet. Subscribe to be there when it does,
+              or come hang out on Discord in the meantime.
+            </p>
+          </div>
+        ) : (
+          <ol>
+            {videos.map((v, i) => (
+              <li
+                key={i}
+                className="grid grid-cols-[80px_1fr_auto] items-baseline gap-6 py-7 border-b border-rule last:border-b-0"
+              >
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground/80">
+                  {v.date}
+                </span>
+                <div>
+                  <h3 className="font-display text-2xl tracking-tight">
+                    {v.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1 max-w-[52ch]">
+                    {v.description}
+                  </p>
+                </div>
+                {v.url && (
+                  <a
+                    href={v.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-grow inline-flex items-baseline gap-0.5 text-sm"
+                  >
+                    Watch
+                    <ArrowUpRight className="h-3.5 w-3.5 self-center" aria-hidden />
+                  </a>
+                )}
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
     </div>
   );
 }

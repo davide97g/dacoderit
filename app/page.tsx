@@ -1,153 +1,130 @@
-"use client";
 import { JoinDiscord } from "@/components/join-discord";
-import { ArrowRight, Code, Mail, Map, Users, Youtube } from "lucide-react";
-import { useTheme } from "next-themes";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
 
-// Loading component for Suspense
-function LinkCardSkeleton() {
-  return (
-    <div className="p-6 border rounded-lg animate-pulse">
-      <div className="flex items-start gap-4">
-        <div className="mt-1 p-2 rounded-md bg-primary/10">
-          <div className="h-5 w-5 bg-primary/20 rounded" />
-        </div>
-        <div className="w-full">
-          <div className="h-6 w-24 bg-muted rounded mb-2" />
-          <div className="h-4 w-full bg-muted/50 rounded" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Link card component
-function LinkCard({
-  href,
-  label,
-  description,
-  icon: Icon,
-}: {
-  href: string;
-  label: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-}) {
-  const { theme } = useTheme();
-  return (
-    <Link
-      href={href}
-      className="group block p-6 border rounded-lg hover:bg-accent transition-colors bg-accent/50"
-    >
-      <div className="flex items-start gap-4">
-        <div className="mt-1 p-2 rounded-md bg-primary/20 text-primary">
-          <Icon className="h-5 w-5" />
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold flex items-center gap-2">
-            {label}
-            <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-          </h2>
-          <p
-            className={
-              theme == "dark" ? "text-muted-foreground" : "text-foreground/50"
-            }
-          >
-            {description}
-          </p>
-        </div>
-      </div>
-    </Link>
-  );
-}
+const entries = [
+  {
+    num: "01",
+    href: "/youtube",
+    label: "YouTube",
+    note: "Channel goals, episodes, recaps.",
+  },
+  {
+    num: "02",
+    href: "/projects",
+    label: "Projects",
+    note: "Open source and collaborative work.",
+  },
+  {
+    num: "03",
+    href: "/community",
+    label: "Community",
+    note: "Contributions, rewards, reputation.",
+  },
+  {
+    num: "04",
+    href: "/roadmap",
+    label: "Roadmap",
+    note: "What is next, in the open.",
+  },
+  {
+    num: "05",
+    href: "/contact",
+    label: "Contact",
+    note: "Email, socials, signals.",
+  },
+];
 
 export default function Home() {
-  const links = [
-    {
-      href: "/youtube",
-      label: "YouTube",
-      description: "Channel goals and content recap",
-      icon: Youtube,
-    },
-    {
-      href: "/projects",
-      label: "Projects",
-      description: "Open source and collaborative work",
-      icon: Code,
-    },
-    {
-      href: "/community",
-      label: "Community",
-      description: "Contributions, rewards and reputation",
-      icon: Users,
-    },
-    {
-      href: "/roadmap",
-      label: "Roadmap",
-      description: "Future plans and goals",
-      icon: Map,
-    },
-    {
-      href: "/contact",
-      label: "Contact",
-      description: "Get in touch with me",
-      icon: Mail,
-    },
-  ];
-
-  // get theme
-  const { theme, systemTheme } = useTheme();
-
-  const backgroundImage =
-    (theme === "system" ? systemTheme : theme) === "dark"
-      ? "/background-dark.png"
-      : "/background.png";
-
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-3.5rem)]">
-      <div
-        style={{
-          backgroundImage: "url('" + backgroundImage + "')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="container w-full px-4 py-8 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 rounded-lg"
-      >
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-4">
-            Dacoder Project
-          </h1>
-          <Image
-            src={"/profile-pic.png"}
-            alt="Logo"
-            width={100}
-            height={100}
-            className="mx-auto mb-4 rounded-full border-2 border-primary shadow-lg"
-          />
-          <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-            Open source. Collaborative. Community-driven.
+    <div className="mx-auto w-full max-w-3xl px-6 pt-16 pb-24 md:pt-24">
+      {/* Header. Asymmetric: type left, photo right. */}
+      <section className="grid grid-cols-[1fr_auto] gap-8 items-start mb-20">
+        <div className="reveal" style={{ ["--d" as string]: "60ms" }}>
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-6">
+            <span className="inline-block w-2 h-2 rounded-full bg-accent mr-2 align-middle pulse-dot" />
+            Notebook, est. 2025
           </p>
-          <div className="mt-6 mb-4 mx-auto flex items-center justify-center gap-4">
-            <JoinDiscord />
-          </div>
+          <h1 className="font-display text-5xl md:text-7xl leading-[0.95] tracking-tight text-balance">
+            Dacoder is a{" "}
+            <span className="display-italic">small workshop</span> for open
+            source, collaborative software.
+          </h1>
         </div>
+        <Image
+          src="/profile-pic.png"
+          alt="Davide"
+          width={88}
+          height={88}
+          priority
+          className="rounded-sm grayscale contrast-110 hover:grayscale-0 transition-[filter] duration-700 reveal"
+          style={{ ["--d" as string]: "180ms" }}
+        />
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Suspense
-            fallback={Array(5)
-              .fill(0)
-              .map((_, i) => (
-                <LinkCardSkeleton key={i} />
-              ))}
-          >
-            {links.map((link) => (
-              <LinkCard key={link.href} {...link} />
-            ))}
-          </Suspense>
+      {/* Manifesto */}
+      <section
+        className="grid grid-cols-1 md:grid-cols-[120px_1fr] gap-x-6 gap-y-3 mb-20 reveal"
+        style={{ ["--d" as string]: "260ms" }}
+      >
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground pt-2">
+          ¶ Intent
+        </p>
+        <div className="space-y-4 text-[17px] leading-relaxed text-pretty max-w-[62ch] text-foreground/85">
+          <p>
+            Davide Ghiotto, writing code in public. Projects shipped together,
+            videos made for the curious, a small rewards system for the people
+            who show up.
+          </p>
+          <p className="text-muted-foreground">
+            Not a studio. Not a course. A continuous, public notebook.
+          </p>
+          <JoinDiscord className="pt-2" />
         </div>
-      </div>
+      </section>
+
+      {/* Index list — replaces the card grid */}
+      <section>
+        <header className="flex items-baseline justify-between border-b border-rule pb-3 mb-2">
+          <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            Index
+          </h2>
+          <span className="font-mono text-[10px] text-muted-foreground/70">
+            {entries.length} sections
+          </span>
+        </header>
+        <ul>
+          {entries.map((e, i) => (
+            <li
+              key={e.href}
+              className="reveal border-b border-rule last:border-b-0"
+              style={{ ["--d" as string]: `${360 + i * 70}ms` }}
+            >
+              <Link
+                href={e.href}
+                className="group grid grid-cols-[36px_1fr_auto] items-baseline gap-6 py-6 md:py-7"
+              >
+                <span className="font-mono text-xs text-muted-foreground/80 group-hover:text-accent transition-colors">
+                  {e.num}
+                </span>
+                <div>
+                  <h3 className="font-display text-3xl md:text-4xl tracking-tight inline-block link-grow">
+                    {e.label}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground max-w-[42ch]">
+                    {e.note}
+                  </p>
+                </div>
+                <ArrowUpRight
+                  className="h-4 w-4 text-muted-foreground -translate-x-1 opacity-60 group-hover:translate-x-0 group-hover:opacity-100 group-hover:text-foreground transition-all"
+                  aria-hidden
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }
